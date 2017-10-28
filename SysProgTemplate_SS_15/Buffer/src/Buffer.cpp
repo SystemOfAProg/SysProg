@@ -16,3 +16,7 @@ Buffer::Buffer() {
 Buffer::~Buffer() {
 	// TODO Auto-generated destructor stub
 }
+
+char getNextChar(){
+	return 'c';
+}

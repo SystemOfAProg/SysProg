@@ -12,6 +12,9 @@ class Buffer {
 public:
 	Buffer();
 	virtual ~Buffer();
+	char getNextChar();
+private:
+
 };
 
 #endif /* BUFFER_H_ */
