@@ -1,7 +1,7 @@
 using namespace std;
 
 #include "../includes/Buffer.h"
-#include <iostream.h>
+#include <iostream>
 
 
 int main(int argc, char **argv) {
@@ -9,6 +9,6 @@ int main(int argc, char **argv) {
 	Buffer*  buffer;
 
 	buffer = new Buffer();
-	std::cout << "Funktionert der Mist eigentlich überhaupt?" << std::endl;
+	cout << "Funktionert der Mist eigentlich überhaupt?" << endl;
 
 }

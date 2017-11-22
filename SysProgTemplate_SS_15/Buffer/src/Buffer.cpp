@@ -6,6 +6,7 @@
  */
 
 #include "../includes/Buffer.h"
+#include <iostream>
 
 
 Buffer::Buffer() {
