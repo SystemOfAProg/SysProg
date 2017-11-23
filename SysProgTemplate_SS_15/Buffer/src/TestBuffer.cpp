@@ -9,6 +9,6 @@ int main(int argc, char **argv) {
 	Buffer*  buffer;
 
 	buffer = new Buffer();
-	cout << "Funktionert der Mist eigentlich überhaupt?" << endl;
+	cout << "===== Starting TestBuffer ======" << endl;
 
 }

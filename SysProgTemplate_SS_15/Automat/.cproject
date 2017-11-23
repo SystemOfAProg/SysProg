@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="0.2008497911">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="0.2008497911" moduleId="org.eclipse.cdt.core.settings" name="Default">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="Automat" buildProperties="" description="" id="0.2008497911" name="Default" parent="org.eclipse.cdt.build.core.prefbase.cfg">
+					<folderInfo id="0.2008497911." name="/" resourcePath="">
+						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.1901257577" name="No ToolChain" resourceTypeBasedDiscovery="false" superClass="org.eclipse.cdt.build.core.prefbase.toolchain">
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="org.eclipse.cdt.build.core.prefbase.toolchain.1901257577.1881065856" name=""/>
+							<builder id="org.eclipse.cdt.build.core.settings.default.builder.1682409015" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1928596917" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.911382171" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.35052358" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							</tool>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.2093932129" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
+								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1687600196" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/usr/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/c++/5"/>
+									<listOptionValue builtIn="false" value="/usr/include/c++/5/backward"/>
+									<listOptionValue builtIn="false" value="/usr/include/x86_64-linux-gnu"/>
+									<listOptionValue builtIn="false" value="/usr/include/x86_64-linux-gnu/c++/5"/>
+									<listOptionValue builtIn="false" value="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+									<listOptionValue builtIn="false" value="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+									<listOptionValue builtIn="false" value="/usr/local/include"/>
+								</option>
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.806253650" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							</tool>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.1626472908" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1995918623" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="Automat.null.968847614" name="Automat"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="0.2008497911">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.1964147118;cdt.managedbuild.toolchain.gnu.base.1964147118.1981102633;cdt.managedbuild.tool.gnu.cpp.compiler.base.1748058479;cdt.managedbuild.tool.gnu.cpp.compiler.input.841074953">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.1964147118;cdt.managedbuild.toolchain.gnu.base.1964147118.1981102633;cdt.managedbuild.tool.gnu.c.compiler.base.784545492;cdt.managedbuild.tool.gnu.c.compiler.input.1912563801">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+		<buildTargets>
+			<target name="build" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>make</buildCommand>
+				<buildArguments/>
+				<buildTarget>makeTestAutomat</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+		</buildTargets>
+	</storageModule>
+</cproject>
