@@ -9,11 +9,21 @@
 #define BUFFER_H_
 
 class Buffer {
-public:
-	Buffer();
-	virtual ~Buffer();
-	char getNextChar();
-private:
+	char* next;
+	char* buffer1;
+	char* buffer2;
+	int size;
+	int lastCharInBuffer;
+	int lastReadIndex;
+	public:
+		Buffer(int);
+		virtual ~Buffer();
+		char getNextChar();
+		char getCurrentChar();
+		char returnCurrentChar();
+		int fillUpBuffer(char*);
+		void printDebugInfo();
+		void printCurrentDirectory();
 
 };
 

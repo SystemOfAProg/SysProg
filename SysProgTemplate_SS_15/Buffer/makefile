@@ -38,6 +38,8 @@ BufferTarget :  $(SRCDIR)/Buffer.cpp $(HEADERDIR)/Buffer.h
 #TestBuffer.o ist abhaengig von TestBuffer.cpp und Buffer.h
 TestBufferTarget :  $(SRCDIR)/TestBuffer.cpp $(HEADERDIR)/Buffer.h
 	g++ -g  -c -Wall $(SRCDIR)/TestBuffer.cpp -o $(BINDIRTEST)/TestBuffer.o
+	# Delete old version of test-file and copy new instance out of the src-directory
+	rm -f $(BINDIRTEST)/*.txt
 
 
 
