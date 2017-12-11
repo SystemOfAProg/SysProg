@@ -34,9 +34,6 @@ void TestBuffer::testGetNextChar() {
 	buffer = new Buffer(123);
 	char c;
 	do {
-		if(c!=(buffer->getCurrentChar())){
-			throw 1;
-		}
 		c = buffer->getNextChar();
 		cout << c;
 	} while(c != NULL);
@@ -59,9 +56,6 @@ void TestBuffer::testReturnCurrentChar() {
 			break;
 		} else {
 			returnCharacter = buffer->returnCurrentChar();
-			if(c!=returnCharacter){
-				throw 1;
-			}
 			c = buffer->getNextChar();
 			cout << c;
 			i++;
