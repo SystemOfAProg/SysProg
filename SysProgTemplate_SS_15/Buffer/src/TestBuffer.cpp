@@ -35,6 +35,9 @@ void TestBuffer::testGetNextChar() {
 	char c;
 	do {
 		c = buffer->getNextChar();
+		if(c == "\n") {
+			cout << "[END OF LINE]"
+		}
 		cout << c;
 	} while(c != NULL);
 	cout << "[Test-Buffer]: The test was executed properly." << endl;
