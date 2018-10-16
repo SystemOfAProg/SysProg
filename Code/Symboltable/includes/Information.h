@@ -9,9 +9,8 @@ class Information {
 		Information(char* lexem, unsigned int key);
 		virtual ~Information();
 		char* getName();
-		bool compareLex(char* lexem);
+		bool compareLexem(char* lexem);
 		unsigned int getKey();
-		int stringCompare(const char *s1, const char *s2);
 
 	private:
 		char* name;
