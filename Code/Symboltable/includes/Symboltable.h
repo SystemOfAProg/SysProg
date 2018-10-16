@@ -10,6 +10,7 @@ class Symboltable {
 		virtual ~Symboltable();
 		SymtabEntry* insert(char* lexem);
 		unsigned int hash(char* s);
+		unsigned int getTableSize();
 		Information* lookup(SymtabEntry* key);
 
 	private:

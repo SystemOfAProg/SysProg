@@ -31,15 +31,12 @@ Information* Symboltable::lookup(SymtabEntry* key) {
 // ==== Utilities for inserting ===
 
 unsigned int Symboltable::hash(char* s) {
-	unsigned int hashValue = 0;
-	int stringLength = (this->stringLength(s)) - 1;
-	char* current = s;
-	while ( *current != '\n' ) {
-		hashValue += *current * stringLength;
-		current++;
-		stringLength--;
+	int seed = 131; 
+   	unsigned long hash = 0;
+	for(int i = 0; i < this->stringLength(s); i++) {
+		hash = (hash * seed) + s[i];
 	}
-	return hashValue;
+	return hash % this->TABLE_SIZE;
 }
 
 int Symboltable::stringLength(char* lexem) {
@@ -50,6 +47,10 @@ int Symboltable::stringLength(char* lexem) {
 		current++;
 	}
 	return stringLength;
+}
+
+unsigned int Symboltable::getTableSize() {
+	return this->TABLE_SIZE;
 }
 
 void Symboltable::initSymbols() {
