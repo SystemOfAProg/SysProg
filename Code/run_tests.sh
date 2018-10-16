@@ -3,3 +3,6 @@
 cd ./Symboltable
 ./run_tests.sh
 cd ../
+cd ./Buffer
+./run_tests.sh
+cd ../
