@@ -21,10 +21,15 @@ Buffer::Buffer (const char* fileName, int bufferSize) {
 	next = buffer1;
 	this->fileName = fileName;
 	lastReadIndex = 0;
+	this->currentLine = 1;
+	this->currentPositionInLine = 0;
+	this->lastPositionInLastLine = 0;
 	fillUpBuffer(buffer1);
 }
 
 Buffer::~Buffer() { }
+
+// ================== Public Functions of Buffer ==================
 
 char Buffer::getCurrentChar() {
 	return *next;
@@ -44,6 +49,11 @@ char Buffer::getNextChar(){
 			return getNextChar();
 		}
 	} else {
+		if(*next == '\n') {
+			this->setPosition(PositionChange::nextLine);
+		} else {
+			this->setPosition(PositionChange::stepForward);
+		}
 		next ++;
 	}
 	return c;
@@ -61,8 +71,11 @@ char Buffer::returnCurrentChar(){
 		next--;
 	}
 	c = *next;
+	this->setPosition(PositionChange::stepBackward);
 	return c;
 }
+
+// ================== Utilities for Buffer Reading ==================
 
 int Buffer::fillUpBuffer(char* bufferIndex) {
 	ifstream is (this->fileName, ios::binary | ios::ate);
@@ -83,7 +96,39 @@ int Buffer::fillUpBuffer(char* bufferIndex) {
 	return 0;
 }
 
+// ================== Source Code Positioning Information ==================
 
+int Buffer::getCurrentLine() {
+	return this->currentLine;
+}
+
+int Buffer::getCurrentPositionInLine() {
+	return this->currentPositionInLine;
+}
+
+void Buffer::setPosition(PositionChange position) {
+	if(position == PositionChange::nextLine) {
+		this->currentLine++;
+		this->lastPositionInLastLine = this->currentPositionInLine;
+		this->currentPositionInLine = 0;
+		return;
+	} else if (position == PositionChange::stepForward) {
+		this->currentPositionInLine++;
+	} else if (position == PositionChange::stepBackward) {
+		if(this->currentPositionInLine == 0 && this->currentLine > 1) {
+			this->currentPositionInLine = this->lastPositionInLastLine;
+			this->lastPositionInLastLine = 0;
+			this->currentLine--;
+		} else if (this->currentPositionInLine > 0 && this->currentLine >= 1) {
+			this->currentPositionInLine--;
+		} else {
+			cout << "[Buffer]: Step backward could not be applied. Maybe the cursor is already at the beginning of the file" << endl;
+		}
+	}
+	//cout << "Current Position: (L " << this->currentLine << " | C " << this->currentPositionInLine << " )" << endl;
+}
+
+// ================== Debug Utilities ==================
 
 void Buffer::printDebugInfo() {
 	cout << "[BUFFER-DEBUG-INFO]: The size of the buffer has been set to " << size << endl;

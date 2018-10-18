@@ -1,29 +1,16 @@
 using namespace std;
 
 #include "../includes/Buffer.h"
+#include "../includes/TestBuffer.h"
 #include <iostream>
-
-class TestBuffer {
-	public:
-		static void testGetNextChar();
-		static void testReturnCurrentChar();
-		static void printStartSequence();
-		static void printEndSequence();
-};
 
 int main(int argc, char **argv) {
 	TestBuffer* test = new TestBuffer();
 	test->printStartSequence();
-	try {
-		test->testGetNextChar();
-	} catch (int e) {
-		cout << "[Test-Buffer]: An Error happened while executing the test for getNextChar()." << endl;
-	}
-	try {
-		test->testReturnCurrentChar();
-	} catch (int e) {
-		cout << "[Test-Buffer]: An Error happened while executing the test for returnCurrentChar()." << endl;
-	}
+	// test->testGetNextChar();
+	// test->testReturnCurrentChar();
+	test->testBufferCursorPosition1();
+	test->testBufferCursorPosition2();
 	test->printEndSequence();
 }
 
@@ -63,6 +50,88 @@ void TestBuffer::testReturnCurrentChar() {
 	} while(true);
 	cout << endl << "[Test-Buffer]: The test was executed properly." << endl;
 	buffer->~Buffer();
+}
+
+// 1. Forward run through file with only getNexts and no returnChar
+void TestBuffer::testBufferCursorPosition1() {
+	cout << "[Test-Buffer]: Execute test for Buffer::getCurrentLine() and Buffer::currentPositionInLine() Nr.1." << endl;
+	Buffer*  buffer;
+	buffer = new Buffer("buffer-position-test-file.txt", 123);
+	char c;
+	int expectedPosition = 0;
+	int expectedLine = 1;
+	int counter = 0;
+	do {
+		c = buffer->getNextChar();
+		counter++;
+		if(c == '\n') {
+			// Set position to new line, if linebreak is detected
+			expectedLine++;
+			expectedPosition = 0;
+		} else {
+			// Increase expected position in current line
+			expectedPosition++;
+		}
+		if(c != NULL) {
+			cout << "(" << buffer->getCurrentLine() << "|" << buffer->getCurrentPositionInLine() << ")" << endl; 
+		}
+		if (TestBuffer::errorHappened(c,counter,expectedLine,expectedPosition,buffer->getCurrentLine(),buffer->getCurrentPositionInLine())) {
+			return;
+		}
+	} while(c != NULL);
+}
+
+// 2. Mix between getting and returning characters
+void TestBuffer::testBufferCursorPosition2() {
+	cout << "[Test-Buffer]: Execute test for Buffer::getCurrentLine() and Buffer::currentPositionInLine() Nr.2." << endl;
+	Buffer*  buffer;
+	buffer = new Buffer("buffer-position-test-file.txt", 123);
+	char c;
+	int expectedPosition = 0;
+	int expectedLine = 1;
+	int counter = 0;
+	// Go through first line in file (9 characters per line)
+	do {
+		c = buffer->getNextChar();
+		counter++;
+		if(c == '\n') {
+			// Set position to new line, if linebreak is detected
+			expectedLine++;
+			expectedPosition = 0;
+		} else {
+			// Increase expected position in current line
+			expectedPosition++;
+		}
+		if (TestBuffer::errorHappened(c,counter,expectedLine,expectedPosition,buffer->getCurrentLine(),buffer->getCurrentPositionInLine())) {
+		return;
+	}
+	} while(counter<10);
+	// Return character and jump back to last line
+	buffer->returnCurrentChar();
+	expectedLine--;
+	expectedPosition = 9;
+	cout << "Position Buffer: (" << buffer->getCurrentLine() << "|" << buffer->getCurrentPositionInLine() << ")" << endl;
+	if (TestBuffer::errorHappened(c,counter,expectedLine,expectedPosition,buffer->getCurrentLine(),buffer->getCurrentPositionInLine())) {
+		return;
+	}
+	buffer->returnCurrentChar();
+	expectedPosition--;
+	if (TestBuffer::errorHappened(c,counter,expectedLine,expectedPosition,buffer->getCurrentLine(),buffer->getCurrentPositionInLine())) {
+		return;
+	}
+	cout << "[Test-Buffer]: The test was executed properly." << endl;
+	buffer->~Buffer();
+}
+
+bool TestBuffer::errorHappened(char c, int counter, int expectedLine, int expectedPosition, int actualLine, int actualPosition) {
+	if (c != NULL && (expectedLine != actualLine || expectedPosition != actualPosition)) {
+		cout << "Positions do not match in round " << counter << ": Buffer(";
+		cout << actualLine << "|" << actualPosition << ") <-> Control(";
+		cout << expectedLine << "|" << expectedPosition << ")" << endl;
+		return true;
+	} else {
+		return false;
+	}
 }
 
 void TestBuffer::printStartSequence() {
