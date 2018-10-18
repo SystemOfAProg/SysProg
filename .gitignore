@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+Code/Symboltable/debug/
+
+Code/Buffer/debug/
