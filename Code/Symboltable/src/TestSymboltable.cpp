@@ -34,10 +34,19 @@ bool testSymTableInsert() {
 	return testSuccess;
 }
 
+bool testStringTable() {
+	bool testSuccess = true;
+	return testSuccess;
+}
+
 int main(int argc, char **argv) {
 	int failedTestCounter = 0;
 	if (!testSymTableInsert()) {
 		std::cout << "Error in test \"testSymTableInsert()\"" << std::endl;
+		failedTestCounter++;
+	}
+	if (!testStringTable()) {
+		std::cout << "Error in test \"testStringTable()\"" << std::endl;
 		failedTestCounter++;
 	}
 	std::cout << failedTestCounter << " errors happened in the test execution" << std::endl;

@@ -8,10 +8,11 @@
 using namespace std;
 #include <iostream>
 #include "../includes/Symboltable.h"
+#include "../includes/StringTable.h"
+#include "../includes/StringTabNode.h"
 
 Symboltable::Symboltable() {
-	// TODO Auto-generated constructor stub
-
+	this->stringTable = new StringTable();
 }
 
 Symboltable::~Symboltable() {

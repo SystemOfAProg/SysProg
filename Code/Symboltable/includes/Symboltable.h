@@ -14,7 +14,7 @@ class Symboltable {
 		Information* lookup(SymtabEntry* key);
 
 	private:
-		static const unsigned TABLE_SIZE = 1024;
+		static const unsigned int TABLE_SIZE = 1024;
 		StringTable* stringTable;
 		SymtabEntry** table;
 		void initSymbols();
