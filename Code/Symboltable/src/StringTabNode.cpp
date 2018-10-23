@@ -3,23 +3,48 @@ using namespace std;
 #include "../includes/StringTabNode.h";
 
 StringTabNode::StringTabNode() {
-    // TODO: implement
+    this->init();
 }
 
 StringTabNode::~StringTabNode() {
     // Delete here everything in case heap memory is allocated with keyword "new"
 }
 
+void StringTabNode::init() {
+    char* toWrite = this->vector;
+    while(toWrite <= (this->vector + STRING_TAB_NODE_SIZE * sizeof(char))) {
+        *toWrite = 0;
+        toWrite++;
+    }
+    return;
+}
+
 char* StringTabNode::getVector() {
-    // TODO: implement
+    return this->vector;
 }
 
 StringTabNode* StringTabNode::getNext() {
-    // TODO: implement
     return this->next;
 }
 
+unsigned int StringTabNode::getSize() {
+    return STRING_TAB_NODE_SIZE;
+}
+
 void StringTabNode::setNext(StringTabNode* next) {
-    // TODO: implement
     this->next = next;
+}
+
+/**
+ * Print all characters saved in this StringTabNode
+ */
+void StringTabNode::print() {
+    char* toPrint = this->vector;
+    cout << "===== Start of String Tab Node =====" << endl;
+    while(toPrint < (this->vector + STRING_TAB_NODE_SIZE * sizeof(char))) {
+        std::cout << (void *)toPrint << ": " << *toPrint << endl;
+        toPrint++;
+    }
+    cout << "====== End of String Tab Node ======" << endl;
+    return;
 }

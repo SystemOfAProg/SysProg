@@ -8,13 +8,14 @@ class StringTable {
 		StringTable();
 		virtual ~StringTable();
 		char* insert(char* lexem);
+		void print();
 	private:
-		static const unsigned int STRING_TAB_NODE_SIZE = 256;
 		char* freePosition;
 		unsigned int freeSpace;
 		StringTabNode* firstNode;
 		StringTabNode* currentNode;
 		unsigned int countCharacters(char* lexem);
+		bool addStringTabNodeIfNecessary(unsigned int lexemLength, char* lexem);
 };
 
 #endif /* STRINGTABLE_H_ */

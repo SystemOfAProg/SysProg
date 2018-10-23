@@ -55,5 +55,5 @@ unsigned int Symboltable::getTableSize() {
 }
 
 void Symboltable::initSymbols() {
-
+	
 }

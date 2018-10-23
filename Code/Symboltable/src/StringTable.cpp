@@ -3,9 +3,10 @@ using namespace std;
 #include "../includes/StringTable.h";
 
 StringTable::StringTable() {
-    this->freeSpace = STRING_TAB_NODE_SIZE;
-    this->freePosition = (char*) malloc(STRING_TAB_NODE_SIZE);
-    this->firstNode = (StringTabNode*) freePosition;
+    this->firstNode = new StringTabNode();
+    this->currentNode = this->firstNode;
+    this->freePosition = (char*) this->firstNode->getVector();
+    this->freeSpace = this->firstNode->getSize();
     // TODO: implement
 }
 
@@ -13,39 +14,58 @@ StringTable::~StringTable() {
     // Delete here everything in case heap memory is allocated with keyword "new"
 }
 
-// If stringtable runs out of space -> double the existing space
+/**
+ * Insert new Lexem into the StringTable and return its address in the string table
+ */ 
 char* StringTable::insert(char* lexem) {
-    int lexemCharacterCount = (int)this->countCharacters(lexem);
+    unsigned int lexemCharacterCount = this->countCharacters(lexem);
     char* temporary = this->freePosition;
-    // If there is not enough space for 
-    if (lexemCharacterCount >= this->freeSpace) {
-        StringTabNode* newNode = (StringTabNode*) malloc(STRING_TAB_NODE_SIZE);
-        this->freePosition = (char*) newNode;
+    if (!this->addStringTabNodeIfNecessary(lexemCharacterCount, lexem)) {
+        memcpy(this->freePosition, lexem, lexemCharacterCount+1);
+        this->freePosition[lexemCharacterCount] = '\0';
+        this->freePosition += lexemCharacterCount+1;
+        this->freeSpace -= lexemCharacterCount+1;
+        // std::cout << "> Insert new Lexem" << "\- Lexem: " << lexem << "\n - Length: " << lexemCharacterCount << "\n - Space left after adding: " << this->freeSpace << "\n - Added at: " << this->freePosition;
+        return temporary;
+    } else {
+        return NULL;
     }
-    // copy lexem to free space
-    memcpy(this->freePosition, lexem, lexemCharacterCount+1);
-    // NULL Terminated Strings
-    this->freePosition[lexemCharacterCount] = '\0';
-    this->freePosition += lexemCharacterCount+1;
-    this->freeSpace -= lexemCharacterCount+1;
-    return temporary;
+}
+
+
+/**
+ * Check, if in current StringTabNode exists enough space for the new lexem,
+ * if not, create a new StringTabNode and connect the old and new one
+ */
+bool StringTable::addStringTabNodeIfNecessary(unsigned int lexemLength, char* lexem) {
+    if (this->freeSpace <= lexemLength) {
+        StringTabNode* newNode = new StringTabNode();
+        this->currentNode->setNext(newNode);
+        this->currentNode = newNode;
+        this->freePosition = newNode->getVector();
+        this->freeSpace = newNode->getSize();
+        if (newNode->getSize() <= lexemLength) {
+            std::cout << "[WARNING]: The length of lexem " << lexem << " exceeds the maximum length of String-Table Entries of " << newNode->getSize()-1 << std::endl;
+            return false;
+        }
+        return true;
+        // std::cout << "> Create new StringTabNode at " << (void*) newNode << std::endl;
+    }
 }
 
 unsigned int StringTable::countCharacters(char* lexem) {
     unsigned int size = 0;
-    char* position = lexem;
-    while(position != NULL || *position != '\n' || *position != '\r' || *position != ' ' || *position != '\0') {
+    while(*lexem++) {
         size++;
     }
     return size;
 }
 
-// Code for realloc version, when StringTable runs out of space
-// STRING_TAB_NODE_SIZE *= 2;
-//         char* reallocatedPosition = (char*) realloc(this->firstNode, STRING_TAB_NODE_SIZE);
-//         // Check, if reallocation is at new space and copy data to new location, if neccessary
-//         if(reallocatedPosition != (char*)this->firstNode) {
-//             memcpy(reallocatedPosition, this->firstNode, this->freePosition-(char*)this->firstNode + 1);
-//             this->firstNode = (StringTabNode*)reallocatedPosition;
-//             this->
-//        }
+void StringTable::print() {
+    StringTabNode* node = this->firstNode;
+    while(node != NULL) {
+        node->print();
+        node = node->getNext();
+    }
+    return;
+}

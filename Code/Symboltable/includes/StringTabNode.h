@@ -1,8 +1,6 @@
 #ifndef STRINGTABNODE_H_
 #define STRINGTABNODE_H_
 
-#define MEM 2000
-
 class StringTabNode {
 	public:
 		StringTabNode();
@@ -10,9 +8,13 @@ class StringTabNode {
 		char* getVector();
 		void setNext(StringTabNode* next);
 		StringTabNode* getNext();
+		unsigned int getSize();
+		void print();
 	private:
-		char vector[MEM];
+		static const unsigned int STRING_TAB_NODE_SIZE = 1024;
+		char vector[STRING_TAB_NODE_SIZE];
 		StringTabNode* next;
+		void init();
 };
 
 
