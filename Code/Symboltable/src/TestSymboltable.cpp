@@ -50,6 +50,21 @@ bool testStringTable() {
 	return testSuccess;
 }
 
+bool testLookup() {
+	Symboltable* st = new Symboltable();
+	if (st->lookup((char*)symTabLexems[0]) != NULL) {
+		return false;
+	}
+	st->insert((char*)symTabLexems[0]);
+	if (st->lookup((char*)symTabLexems[0]) == NULL) {
+		return false;
+	}
+	if (st->lookup((char*)symTabLexems[1]) != NULL) {
+		return false;
+	}
+	return true;
+}
+
 int main(int argc, char **argv) {
 	int failedTestCounter = 0;
 	if (!testSymTableInsert()) {
@@ -57,6 +72,10 @@ int main(int argc, char **argv) {
 		failedTestCounter++;
 	}
 	if (!testStringTable()) {
+		std::cout << "Error in test \"testStringTable()\"" << std::endl;
+		failedTestCounter++;
+	}
+	if (!testLookup()) {
 		std::cout << "Error in test \"testStringTable()\"" << std::endl;
 		failedTestCounter++;
 	}

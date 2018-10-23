@@ -7,6 +7,7 @@ SymtabEntry::SymtabEntry(Information* info) {
 }
 
 SymtabEntry::~SymtabEntry() {
+	// TODO: delete objects created in this class
 }
 
 SymtabEntry* SymtabEntry::getNext() {

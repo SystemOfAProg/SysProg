@@ -21,12 +21,38 @@ Symboltable::~Symboltable() {
 
 SymtabEntry* Symboltable::insert(char* lexem) {
 	unsigned int hash = this->hash(lexem);
-	return NULL;
-	//return new SymtabEntry(new Information(lexem, hash));
+	char* positionInStringTable = this->stringTable->insert(lexem);
+	Information* information = new Information(positionInStringTable, hash);
+	SymtabEntry* entry = new SymtabEntry(information);
+	this->addEntryToTable(entry);
+	return entry;
 }
 
-Information* Symboltable::lookup(SymtabEntry* key) {
-	
+void Symboltable::addEntryToTable(SymtabEntry* entry) {
+	// Check, if SymtabEntry already exisits for this hashvalue
+	SymtabEntry* potentialEntry = this->table[entry->getInfo()->getKey()];
+	if(potentialEntry == NULL) {
+		potentialEntry = entry;
+	} else {
+		SymtabEntry* lastNode = potentialEntry;
+		while (lastNode->getNext() != NULL) {
+			lastNode = lastNode->getNext();
+		}
+		lastNode->setNext(entry);
+	}
+	return;
+}
+
+SymtabEntry* Symboltable::lookup(char* lexem) {
+	unsigned int hash = this->hash(lexem);
+	SymtabEntry* currentNode = this->table[hash];
+	while (currentNode->getNext() != NULL) {
+		currentNode = currentNode->getNext();
+		if (currentNode->getInfo()->equals(lexem)) {
+			return currentNode;
+		}
+	}
+	return NULL;
 }
 
 // ==== Utilities for inserting ===

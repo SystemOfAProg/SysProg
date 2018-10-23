@@ -6,10 +6,10 @@
 
 class Information {
 	public:
-		Information(char* lexem, unsigned int key);
+		Information(char* nameInStringTable, unsigned int key);
 		virtual ~Information();
 		char* getName();
-		bool compareLexem(char* lexem);
+		bool equals(char* lexem);
 		unsigned int getKey();
 
 	private:

@@ -2,9 +2,9 @@ using namespace std;
 #include <iostream>
 #include "../includes/Information.h";
 
-Information::Information(char* lexem, unsigned int key) {
+Information::Information(char* nameInStringTable, unsigned int key) {
     this->key = key;
-    this->name = lexem;
+    this->name = nameInStringTable;
 }
 
 Information::~Information() {
@@ -15,7 +15,7 @@ char* Information::getName() {
     return this->name;
 }
 
-bool Information::compareLexem(char* lexem) {
+bool Information::equals(char* lexem) {
     char* toCompare = this->name;
     if(toCompare == NULL || lexem == NULL) {
         cout << "Null Pointer in compareLexem() in class Infromation." << endl;
