@@ -5,7 +5,7 @@ const char* symTabLexems[] = {
 		"position",
 		"initial",
 		"i",
-		"thisIsAVeryLongLexem",
+		"thisIsAVeryLongLexem", // 20 characters
 		"123456",
 		"A1B2C3",
 		// 1024 characters ( -> to long for stringtabnodes), exclude this from regular tests
@@ -14,7 +14,7 @@ const char* symTabLexems[] = {
 
 int numDigits(int number) {
     int digits = 0;
-    if (number < 0) digits = 1; // remove this line if '-' counts as a digit
+    if (number < 0) digits = 1;
     while (number) {
         number /= 10;
         digits++;
@@ -46,7 +46,8 @@ bool testStringTable() {
 			testSuccess = false;
 		}
 	}
-	//st->print();
+	// st->print();
+	st->~StringTable();
 	return testSuccess;
 }
 
@@ -76,7 +77,7 @@ int main(int argc, char **argv) {
 		failedTestCounter++;
 	}
 	if (!testLookup()) {
-		std::cout << "Error in test \"testStringTable()\"" << std::endl;
+		std::cout << "Error in test \"testLookup()\"" << std::endl;
 		failedTestCounter++;
 	}
 	std::cout << failedTestCounter << " errors happened in the test execution" << std::endl;

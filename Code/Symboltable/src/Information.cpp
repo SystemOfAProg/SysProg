@@ -21,7 +21,7 @@ bool Information::equals(char* lexem) {
         cout << "Null Pointer in compareLexem() in class Infromation." << endl;
         return false;
     }
-    while(*lexem != '\n' && *toCompare != '\n') {
+    while(*lexem != '\n' && *toCompare != '\n' && *lexem != '\0' && *toCompare != '\0') {
         if(*toCompare != *lexem) {
             cout << "Lexems are not the same. 1: " << *toCompare << ", 2: " << *lexem << endl;
             return false;

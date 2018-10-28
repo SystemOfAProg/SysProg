@@ -1,7 +1,7 @@
 #ifndef SYMBOLTABLE_H_
 #define SYMBOLTABLE_H_
 
-#include "SymtabEntry.h"
+#include "SymTabEntry.h"
 #include "StringTable.h"
 
 class Symboltable {

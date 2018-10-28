@@ -38,19 +38,18 @@ char* StringTable::insert(char* lexem) {
  * if not, create a new StringTabNode and connect the old and new one
  */
 bool StringTable::addStringTabNodeIfNecessary(unsigned int lexemLength, char* lexem) {
-    if (this->freeSpace <= lexemLength) {
+    bool lexemNotAddable = false;
+    if (this->currentNode->getSize() <= lexemLength) {
+        std::cout << "[WARNING]: The length of lexem " << lexem << " exceeds the maximum length of String-Table Entries of " << this->currentNode->getSize()-1 << std::endl;
+        lexemNotAddable = true;
+    } else if (this->freeSpace <= lexemLength) {
         StringTabNode* newNode = new StringTabNode();
         this->currentNode->setNext(newNode);
         this->currentNode = newNode;
         this->freePosition = newNode->getVector();
         this->freeSpace = newNode->getSize();
-        if (newNode->getSize() <= lexemLength) {
-            std::cout << "[WARNING]: The length of lexem " << lexem << " exceeds the maximum length of String-Table Entries of " << newNode->getSize()-1 << std::endl;
-            return false;
-        }
-        return true;
-        // std::cout << "> Create new StringTabNode at " << (void*) newNode << std::endl;
     }
+    return lexemNotAddable;
 }
 
 unsigned int StringTable::countCharacters(char* lexem) {

@@ -28,7 +28,7 @@ StringTabNode* StringTabNode::getNext() {
 }
 
 unsigned int StringTabNode::getSize() {
-    return STRING_TAB_NODE_SIZE;
+    return this->tabNodeSize;
 }
 
 void StringTabNode::setNext(StringTabNode* next) {
@@ -41,7 +41,7 @@ void StringTabNode::setNext(StringTabNode* next) {
 void StringTabNode::print() {
     char* toPrint = this->vector;
     cout << "===== Start of String Tab Node =====" << endl;
-    while(toPrint < (this->vector + STRING_TAB_NODE_SIZE * sizeof(char))) {
+    while(toPrint < (this->vector + this->tabNodeSize * sizeof(char))) {
         std::cout << (void *)toPrint << ": " << *toPrint << endl;
         toPrint++;
     }

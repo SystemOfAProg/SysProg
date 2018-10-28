@@ -20,8 +20,8 @@ OBJS = $(OBJDIR)/Symboltable.o \
 		$(OBJDIR)/SymTabEntry.o \
 		$(OBJDIR)/StringTable.o \
 		$(OBJDIR)/StringTabNode.o \
-		$(OBJDIR)/Information.o \
-	#$(OBJDIR)/xx1.o \
+		$(OBJDIR)/Information.o
+	#$(OBJDIR)/xx1.o
 	#$(OBJDIR)/xxn.o
 
 

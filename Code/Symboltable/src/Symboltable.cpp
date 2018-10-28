@@ -5,7 +5,7 @@
  *      Author: knad0001
  */
 
-using namespace std;
+
 #include <iostream>
 #include "../includes/Symboltable.h"
 #include "../includes/StringTable.h"
@@ -32,7 +32,7 @@ void Symboltable::addEntryToTable(SymtabEntry* entry) {
 	// Check, if SymtabEntry already exisits for this hashvalue
 	SymtabEntry* potentialEntry = this->table[entry->getInfo()->getKey()];
 	if(potentialEntry == NULL) {
-		potentialEntry = entry;
+		this->table[entry->getInfo()->getKey()] = entry;
 	} else {
 		SymtabEntry* lastNode = potentialEntry;
 		while (lastNode->getNext() != NULL) {
@@ -46,11 +46,11 @@ void Symboltable::addEntryToTable(SymtabEntry* entry) {
 SymtabEntry* Symboltable::lookup(char* lexem) {
 	unsigned int hash = this->hash(lexem);
 	SymtabEntry* currentNode = this->table[hash];
-	while (currentNode->getNext() != NULL) {
-		currentNode = currentNode->getNext();
+	while (currentNode!= NULL) {
 		if (currentNode->getInfo()->equals(lexem)) {
 			return currentNode;
 		}
+		currentNode = currentNode->getNext();
 	}
 	return NULL;
 }

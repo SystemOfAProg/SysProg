@@ -12,9 +12,10 @@ class StringTabNode {
 		void print();
 	private:
 		static const unsigned int STRING_TAB_NODE_SIZE = 1024;
-		char vector[STRING_TAB_NODE_SIZE];
+		unsigned int tabNodeSize;
 		StringTabNode* next;
 		void init();
+		char vector[STRING_TAB_NODE_SIZE];
 };
 
 
