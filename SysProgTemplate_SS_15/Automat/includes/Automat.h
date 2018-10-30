@@ -7,45 +7,52 @@
 
 #ifndef Automat_H_
 #define Automat_H_
-using namespace std;
-#include <string>
-#include <stdbool.h>
-#include <iostream>
-#include <stdio.h>      /* printf, scanf, NULL */
-#include <stdlib.h>     /* malloc, free, rand */
+
+#include "../../Buffer/includes/Buffer.h"
 
 class Automat {
 public:
 	Automat();
 	virtual ~Automat();
-	int nextState(char input, int state);
-	char getChar();
-	string getToken();
-	string zustandString(int zustand);
-	enum state {
-		INITIAL_STATE = 1,
-		IDENTIFIER,
-		INTEGER,
-		SIGN_ALL,
-		SIGN_COLON,
-		SIGN_COLON_EQUALS,
-		SIGN_EQUALS,
-		SIGN_EQUALS_COLON_EQUALS,
-		SIGN_AND,
-		SIGN_COMMENT_BEGIN,
-		SIGN_COMMENT_CONTENT,
-		SIGN_COMMENT_END,
-		SIGN_EQUALS_COLON,
-		SIGN_AND_AND,
-		UNKOWN_TOKEN,
-		EPSILON_TOKEN
+	enum State {
+		Start,
+		Identifier,
+		Integer,
+		Colon,
+		Assign,
+		Equal,
+		And,
+		LogicAnd,
+		ColonBetweenEqual,
+		ColonBetweenEqualFinal,
+		CommentStart,
+		CommentClose,
+		CommentFinal,
+		Sign,
+		Eof,
+		Null,
+		Error
 	};
-	enum input {
-		LETTER = 1, DIGIT, SIGN_ALL2, COLON, EQUALS, AND, STAR, UNKOWN, EPSILON
-	};
+	void init();
+	State getCurrentState();
+	State getFinalState();
+	char* getLexem();
+	int getBack();
+	bool isStop();
+	bool isAlpha(char c);
+	bool isDigit(char c);
+	bool isSign(char c);
+	bool isTerminatingOrBreak(char c);
+	bool addToLexem(char c);
+	void checkStartState(char c);
+	void read(char c);
 private:
-	string token = "";
-	string tokenStringErstellen = "";
+	State currentState;
+	State finalState;
+	bool stop;
+	int stepsBack;
+	char* lexem;
+	unsigned int index;
 };
 
 #endif /* Automat_H_ */

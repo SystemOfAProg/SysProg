@@ -8,7 +8,7 @@
 # -o --> name des output-files
 
 makeTestAutomat: AutomatTarget TestAutomatTarget  
-	g++ -g objs/Automat.o debug/TestAutomat.o -o debug/AutomatTest
+	g++ -g objs/Automat.o debug/TestAutomat.o ../Buffer/objs/Buffer.o -o debug/AutomatTest
 	
 
 # compilieren des Files Automat.cpp zu Automat.o, 
