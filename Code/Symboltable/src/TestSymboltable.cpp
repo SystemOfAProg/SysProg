@@ -51,16 +51,23 @@ bool testStringTable() {
 	return testSuccess;
 }
 
+// Insert all entries into the SymbolTable
 bool testLookup() {
 	Symboltable* st = new Symboltable();
-	if (st->lookup((char*)symTabLexems[0]) != NULL) {
-		return false;
+	for (int i = 0; i<6; i++) {
+		if (st->lookup((char*)symTabLexems[i]) != NULL) {
+			return false;
+		}
+		st->insert((char*)symTabLexems[i]);
+		if (st->lookup((char*)symTabLexems[i]) == NULL) {
+			return false;
+		}
+		if (st->insert((char*)symTabLexems[i]) != st->lookup((char*)symTabLexems[i])) {
+			return false;
+		}
 	}
-	st->insert((char*)symTabLexems[0]);
-	if (st->lookup((char*)symTabLexems[0]) == NULL) {
-		return false;
-	}
-	if (st->lookup((char*)symTabLexems[1]) != NULL) {
+	st->insert((char*)symTabLexems[6]);
+	if (st->lookup((char*)symTabLexems[6]) != NULL) {
 		return false;
 	}
 	return true;

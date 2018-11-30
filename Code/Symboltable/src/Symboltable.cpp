@@ -20,12 +20,21 @@ Symboltable::~Symboltable() {
 }
 
 SymtabEntry* Symboltable::insert(char* lexem) {
-	unsigned int hash = this->hash(lexem);
-	char* positionInStringTable = this->stringTable->insert(lexem);
-	Information* information = new Information(positionInStringTable, hash);
-	SymtabEntry* entry = new SymtabEntry(information);
-	this->addEntryToTable(entry);
-	return entry;
+	SymtabEntry* potentialEntry = this->lookup(lexem);
+	if (potentialEntry == NULL) {
+		unsigned int hash = this->hash(lexem);
+		char* positionInStringTable = this->stringTable->insert(lexem);
+		if (positionInStringTable != NULL) {
+			Information* information = new Information(positionInStringTable, hash);
+			SymtabEntry* entry = new SymtabEntry(information);
+			this->addEntryToTable(entry);
+			return entry;
+		} else {
+			return NULL;
+		}
+	} else {
+		return potentialEntry;
+	}
 }
 
 void Symboltable::addEntryToTable(SymtabEntry* entry) {
