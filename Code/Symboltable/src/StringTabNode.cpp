@@ -16,6 +16,7 @@ void StringTabNode::init() {
         *toWrite = 0;
         toWrite++;
     }
+    this->tabNodeSize = STRING_TAB_NODE_SIZE;
     return;
 }
 

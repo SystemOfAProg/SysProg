@@ -42,7 +42,7 @@ bool testStringTable() {
 	for(int i=0; i<7; i++) {
 		char* position = NULL;
 		position = st->insert((char*)symTabLexems[i]);
-		if (i != 5 && position == NULL) {
+		if (i != 6 && position == NULL) {
 			testSuccess = false;
 		}
 	}
@@ -81,4 +81,5 @@ int main(int argc, char **argv) {
 		failedTestCounter++;
 	}
 	std::cout << failedTestCounter << " errors happened in the test execution" << std::endl;
+	return 0;
 }
