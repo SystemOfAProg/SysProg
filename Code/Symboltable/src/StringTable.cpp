@@ -1,5 +1,6 @@
 using namespace std;
 #include <iostream>
+#include <iomanip>
 #include "../includes/StringTable.h";
 
 StringTable::StringTable() {
@@ -40,7 +41,7 @@ char* StringTable::insert(char* lexem) {
 bool StringTable::addStringTabNodeIfNecessary(unsigned int lexemLength, char* lexem) {
     bool lexemNotAddable = false;
     if (this->currentNode->getSize() <= lexemLength) {
-        std::cout << "[WARNING]: The length of lexem " << lexem << " exceeds the maximum length of String-Table Entries of " << this->currentNode->getSize()-1 << std::endl;
+        std::cout << "[WARNING]: The length of the lexem, you tried to add, exceeds the maximum length of String-Table Entries of " << this->currentNode->getSize()-1 << std::endl;
         lexemNotAddable = true;
     } else if (this->freeSpace <= lexemLength) {
         StringTabNode* newNode = new StringTabNode();

@@ -7,6 +7,7 @@
 
 
 #include <iostream>
+#include <iomanip>
 #include "../includes/Symboltable.h"
 #include "../includes/StringTable.h"
 #include "../includes/StringTabNode.h"
@@ -16,7 +17,7 @@ Symboltable::Symboltable() {
 }
 
 Symboltable::~Symboltable() {
-	// TODO Auto-generated destructor stub
+	delete this->stringTable;
 }
 
 SymtabEntry* Symboltable::insert(char* lexem) {
@@ -62,6 +63,24 @@ SymtabEntry* Symboltable::lookup(char* lexem) {
 		currentNode = currentNode->getNext();
 	}
 	return NULL;
+}
+
+// Write all entries of symboltable to output
+void Symboltable::dump() {
+	std::cout << "+--------+------------------------------------------+" << std::endl;
+	std::cout << "| " << std::setw(6) << "Hash" << " | " << std::setw(40) << "Lexem" << " |" << std::endl;
+	std::cout << "+--------+------------------------------------------+" << std::endl;
+	for (int i = 0; i < TABLE_SIZE; i++) {
+		if(this->table[i] != NULL) {
+			SymtabEntry* entry = table[i];
+			do {
+				Information* information = entry->getInfo();
+				std::cout << "| " << std::setw(6) << information->getKey() << " | " << std::setw(40) << information->getName() << " |" << std::endl;
+				entry = entry->getNext();
+			} while (entry != NULL);
+		}
+	}
+	std::cout << "+--------+------------------------------------------+" << std::endl;
 }
 
 // ==== Utilities for inserting ===

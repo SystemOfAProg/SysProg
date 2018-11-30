@@ -12,6 +12,7 @@ class Symboltable {
 		unsigned int hash(char* s);
 		unsigned int getTableSize();
 		SymtabEntry* lookup(char* lexem);
+		void dump();
 
 	private:
 		static const unsigned int TABLE_SIZE = 1024;

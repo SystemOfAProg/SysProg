@@ -70,6 +70,8 @@ bool testLookup() {
 	if (st->lookup((char*)symTabLexems[6]) != NULL) {
 		return false;
 	}
+	std::cout << "[SymboltableTest]: Entries of this Symboltable:" << std::endl;
+	st->dump();
 	return true;
 }
 
